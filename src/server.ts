@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import path from 'path';
+import 'dotenv/config';
 
 import './database/connection';
 import { routes } from './routes';
@@ -16,6 +17,8 @@ app.use(errorHandler);
 
 app.use('/image', express.static(path.join(__dirname, '..', 'uploads')));
 
-app.listen(3333, () => {
-  console.log('Server Started at http://localhost:3333');
+const port = process.env.PORT || 3333;
+
+app.listen(port, () => {
+  console.log(`Server Started at ${process.env.API_URL}`);
 });
